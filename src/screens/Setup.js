@@ -16,6 +16,18 @@ export default function Setup() {
   const [password, setPassword] = useState("");
   const [url, setUrl] = useState("");
 
+  const setupApp = () => {
+    if(username.length > 1 && password.length > 1 && url.length > 1){
+        storeData({ 
+            "username": username, 
+            "password": password, 
+            "url": url
+        })
+    }else{
+        alert("Please fill out the fileds abow!")
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Text style= {styles.title}>Taskmanager Setup</Text>
@@ -25,7 +37,7 @@ export default function Setup() {
           placeholder="Username."
           value={username}
           placeholderTextColor="#003f5c"
-          secureTextEntry={true}
+          secureTextEntry={false}
           onChangeText={(txt) => setUsername(txt)}
         />
       </View>
@@ -45,13 +57,13 @@ export default function Setup() {
           placeholder="URL."
           value={url}
           placeholderTextColor="#003f5c"
-          secureTextEntry={true}
+          secureTextEntry={false}
           onChangeText={(txt) => setUrl(txt)}
         />
       </View>
       <TouchableOpacity
         style={styles.loginBtn}
-        onPress={() => storeData({ username, password, url })}
+        onPress={() => setupApp()}
       >
         <Text style={styles.loginText}>Save</Text>
       </TouchableOpacity>
