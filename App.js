@@ -10,23 +10,24 @@ import Home from './src/screens/Home';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [mainRoute, setMainRoute] = useState('');
+  const [mainRoute, setMainRoute] = useState('Home');
 
   useEffect(() => {
     getDataFromAysnc();
   }, [])
 
-  function isEmpty(obj) {
+  function isObjEmpty(obj) {
     for (var prop in obj) {
-      if (obj.hasOwnProperty(prop))
-        return false;
+      if (obj.hasOwnProperty(prop)) return false;
     }
+  
     return true;
   }
-  
+
   const getDataFromAysnc = async () => {
     let data = await retrieveData();
-    if (isEmpty(data)) {
+    console.log("Getting data from Asnyc", data)
+    if (isObjEmpty(data)) {
       setMainRoute('Setup')
     } else setMainRoute('Home')
     setLoading(false);
