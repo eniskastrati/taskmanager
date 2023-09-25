@@ -1,0 +1,7 @@
+//following bash lines to build
+expo build:android
+eas build --profile production --platform android
+
+//following bash lines to start noraml and tunnel mode
+normal: expo start
+tunnel mode: expo start --tunnel
