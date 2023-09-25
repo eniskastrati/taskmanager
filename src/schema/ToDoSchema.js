@@ -19,6 +19,11 @@ const TodoSchema = new mongoose.Schema({
         default: 'pending',
         trim: true
     },
+    note: {
+        type: String,
+        required: true,
+        trim: true
+    },
     code: {
         type: String,
         required: true,
