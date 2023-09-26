@@ -11,18 +11,17 @@ import React, { useState } from "react";
 //importing fucntions
 import { storeData } from "../storage/localstorage";
 
-export default function Setup() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [url, setUrl] = useState("");
+export default function Setup({navigation}) {
+  const [apikey, setapikey] = useState("");
+  const [url, setUrl] = useState("")
 
   const setupApp = () => {
-    if(username.length > 1 && password.length > 1 && url.length > 1){
+    if(apikey.length > 1 && url.length > 1){
         storeData({ 
-            "username": username, 
-            "password": password, 
-            "url": url
+            "api-key": apikey,
+            "url" : url
         })
+        navigation.navigate('Home')
     }else{
         alert("Please fill out the fileds abow!")
     }
@@ -34,31 +33,21 @@ export default function Setup() {
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Username."
-          value={username}
-          placeholderTextColor="#003f5c"
-          secureTextEntry={false}
-          onChangeText={(txt) => setUsername(txt)}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password."
-          value={password}
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          onChangeText={(txt) => setPassword(txt)}
-        />
-      </View>
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="URL."
+          placeholder="URL"
           value={url}
           placeholderTextColor="#003f5c"
           secureTextEntry={false}
           onChangeText={(txt) => setUrl(txt)}
+        />
+      </View>
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Api-key"
+          value={apikey}
+          placeholderTextColor="#003f5c"
+          secureTextEntry={true}
+          onChangeText={(txt) => setapikey(txt)}
         />
       </View>
       <TouchableOpacity
@@ -76,12 +65,12 @@ export default function Setup() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#1E1E21",
     alignItems: "center",
     justifyContent: "center",
   },
   inputView: {
-    backgroundColor: "#f4f5f8",
+    backgroundColor: "#F2F2F2",
     borderRadius: 30,
     width: "70%",
     height: 45,
@@ -110,8 +99,8 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
+    fontSize: 27,
+    fontWeight: '900',
     margin: 60,
     marginTop: -210,
     color: '#3880ff'
@@ -119,8 +108,8 @@ const styles = StyleSheet.create({
   author: {
     fontSize: 12,
     fontWeight: 'bold',
-    marginBottom: -300,
-    marginTop: 250,
+    marginBottom: -380,
+    marginTop: 350,
     color: 'black'
   }
 });

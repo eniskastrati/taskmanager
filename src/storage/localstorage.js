@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import * as Updates from 'expo-updates';
 
 export async function storeData(value) {
   try {
@@ -7,13 +6,11 @@ export async function storeData(value) {
         const jsonValue = JSON.stringify(value);
         console.log("Saving these data", jsonValue)
         await AsyncStorage.setItem("userCredentials", jsonValue);
-        alert("Data saved, exit app and open it again!")
-        Updates.reloadAsync()
     }else {
         alert("Please fill out the filds!");
     }
   } catch (error) {
-    console.log("Error saving data!");
+    console.log("Error saving data!", error);
     alert("Error saving data!");
   }
 }
