@@ -34,8 +34,10 @@ export default function App() {
     console.log("Getting data from Asnyc", data)
     if (isObjEmpty(data)) {
       setMainRoute("Setup")
-    } else setMainRoute("Home")
-    console.log(mainRoute)
+    } 
+    else {
+    setMainRoute("Home")
+    }
     setLoading(false);
   }
 
