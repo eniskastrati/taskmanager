@@ -8,7 +8,7 @@ export default function Task(props){
                 <Text style={styles.title}>Todo Code: {code}</Text>
                 <Text style={styles.date}>Name: {name}</Text>
                 <Text style={styles.date}>Description: {description}</Text>
-                {note.length > 0 ? <Text style={styles.date}>Note: {note}</Text> : null }
+                {note && <Text style={styles.date}>Note: {note}</Text>}
                 <Text style={styles.date}>status: {status}</Text>
             </View>
         </View>
