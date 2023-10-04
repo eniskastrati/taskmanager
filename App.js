@@ -1,7 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import React, {useState, useEffect} from 'react';
-import Spinner from "react-native-loading-spinner-overlay/lib";
 import { retrieveData } from './src/storage/localstorage';
 
 //importing screens
@@ -14,7 +11,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
   const [mainRoute, setMainRoute] = useState('');
 
   useEffect(() => {
@@ -33,37 +29,16 @@ export default function App() {
     let data = await retrieveData();
     console.log("Getting data from Asnyc", data)
     if (isObjEmpty(data)) {
-      setMainRoute("Setup")
-    } 
-    else {
-    setMainRoute("Home")
-    }
-    setLoading(false);
+      setMainRoute('Setup')
+    } else { setMainRoute('Home') }
   }
 
   return (
-    <NavigationContainer>
-        <Spinner
-            visible={loading}
-            textContent={'Loading...'}
-            cancelable={false}
-            textStyle={styles.spinnerTextStyle}
-          />
-          {mainRoute.length > 0 && 
-            <Stack.Navigator initialRouteName={mainRoute}>
-              <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
-              <Stack.Screen name="Setup" component={Setup} options={{ headerShown: false }}/>
-            </Stack.Navigator>
-          }
+    <NavigationContainer> 
+          <Stack.Navigator initialRouteName={mainRoute}>
+            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+            <Stack.Screen name="Setup" component={Setup} options={{ headerShown: false }}/>
+          </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#1E1E21',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
