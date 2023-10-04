@@ -13,15 +13,12 @@ export async function getTasks(){
             "filter": {"status": "pending"}
         }, {
             headers: {
-                'content-type': 'application/json',
-                'Access-Control-Request-Headers': '*',
+                "Content-Type": 'application/json',
                 'api-key': `${data['api-key']}`
             }
         })
-        .then((response) => {
-            if (response.data) {
-                return response.data;
-            }
+        .then(response => {
+            if(response.data) return response.data.documents;
         })
         .catch((err) => {
             alert("Error has happened trying to get data, please try again")
@@ -50,7 +47,7 @@ export async function getTasksCompleted(){
         })
         .then((response) => {
             if (response.data) {
-                return response.data;
+                return response.data.documents;
             }
         })
         .catch((err) => {
@@ -86,7 +83,7 @@ export async function addTask({name,detail,status}){
         })
         .then((response) => {
             if (response.data) {
-                return response.data;
+                return response.data.documents;
             }
         })
         .catch((err) => {
@@ -116,7 +113,7 @@ export async function searchTask(taskDetail){
         })
         .then((response) => {
             if (response.data) {
-                return response.data;
+                return response.data.documents;
             }
         })
         .catch((err) => {
@@ -176,7 +173,7 @@ export async function updateTask({code,name,detail,status,note}){
         })
         .then((response) => {
             if (response.data) {
-                return response.data;
+                return response.data.documents;
             }
         })
         .catch((err) => {
@@ -206,7 +203,7 @@ export async function deleteTask(code){
         })
         .then((response) => {
             if (response.data) {
-                return response.data;
+                return response.data.documents;
             }
         })
         .catch((err) => {
